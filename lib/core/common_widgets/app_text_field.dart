@@ -37,13 +37,13 @@ class _AppTextFieldState extends State<AppTextField> {
 
   // if textField is not obscured then will show nothing, else will show icons accordingly
   Widget? get passwordIcon =>
-      widget.isObscureText ? null : GestureDetector(
+      widget.isObscureText ? GestureDetector(
         onTap: passwordIconOnTapFunction,
         child: Icon(
           obscureText ? Icons.visibility : Icons.visibility_off,
           color: Colors.grey,
         ),
-      );
+      ) : null;
 
   @override
   Widget build(BuildContext context) {

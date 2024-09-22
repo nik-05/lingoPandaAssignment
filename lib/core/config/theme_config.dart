@@ -38,8 +38,7 @@ class ThemeConfig {
     ),
     inputDecorationTheme: InputDecorationTheme(
       constraints: const BoxConstraints(minHeight: 35, maxHeight: 50),
-      contentPadding: const EdgeInsets.only(bottom: 0, left: 20),
-      errorMaxLines: 2,
+      contentPadding: const EdgeInsets.only(left: 20),
       filled: true,
       fillColor: Colors.white,
       border: inputBorder,
