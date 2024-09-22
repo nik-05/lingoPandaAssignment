@@ -5,12 +5,13 @@ class ThemeConfig {
   static bool isDark = false;
 
   // constant Colors, for both themes and custom Colors
-  static const Color primary = Color(0XFF0C54BE);
-  static const Color secondary = Color(0XFF303F60);
-  static const Color onPrimary = Color(0XFFF5F9FD);
-  static const Color onSecondary = Color(0XFFCED3DC);
+  static const Color primary = Color(0xff0C54BE);
+  static const Color secondary = Color(0xff303F60);
+  static const Color onPrimary = Color(0xffF5F9FD);
+  static const Color onSecondary = Color(0xffCED3DC);
   static const Color bodySmallText = Colors.black;
   static const Color buttonText = Colors.white;
+  static const Color surfaceContainer = Color(0xffCED3DC);
 
   static ThemeData lightTheme = ThemeData(
     scaffoldBackgroundColor: onPrimary,
@@ -55,6 +56,7 @@ class ThemeConfig {
       secondary: secondary,
       onPrimary: onPrimary,
       onSecondary: onSecondary,
+      surfaceContainer: surfaceContainer,
     ),
 
     // below are the textThemes.
@@ -63,6 +65,9 @@ class ThemeConfig {
       bodyMedium: bodyMedium,
       titleMedium: titleMedium,
       titleLarge: titleLarge,
+      headlineSmall: headingSmall,
+      labelMedium: labelMedium,
+      headlineMedium: headlineMedium,
     ),
   );
 
@@ -111,5 +116,28 @@ class ThemeConfig {
     fontSize: 14,
     height: 21 / 14,
     fontFamily: 'Poppins',
+  );
+  static TextStyle headingSmall = const TextStyle(
+    color: bodySmallText,
+    fontWeight: FontWeight.w700,
+    fontFamily: 'Poppins',
+    fontSize: 16,
+    height: 24 / 16,
+  );
+
+  static TextStyle headlineMedium = const TextStyle(
+    fontWeight: FontWeight.w700,
+    fontFamily: 'Poppins',
+    fontSize: 16,
+    height: 21 / 16,
+  );
+
+  static TextStyle labelMedium = const TextStyle(
+    color: surfaceContainer,
+    fontWeight: FontWeight.w400,
+    fontStyle: FontStyle.italic,
+    fontFamily: 'Poppins',
+    fontSize: 14,
+    height: 21 / 16,
   );
 }

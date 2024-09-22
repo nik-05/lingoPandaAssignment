@@ -7,6 +7,7 @@ import 'package:lingo_panda_assignment/core/config/theme_config.dart';
 import 'package:lingo_panda_assignment/features/auth/bloc/auth_bloc.dart';
 import 'package:lingo_panda_assignment/features/auth/screens/sign_up_screen.dart';
 import 'package:lingo_panda_assignment/features/auth/services/auth_services.dart';
+import 'package:lingo_panda_assignment/features/comments/bloc/comment_bloc.dart';
 import 'package:lingo_panda_assignment/features/comments/screens/comment_screen.dart';
 import 'package:lingo_panda_assignment/firebase_options.dart';
 
@@ -14,28 +15,24 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-  ).then((val) {
-    // this will setup remote config when the firebase is setup.
-    // this will slow the app for a bit but it's okay because it's a one time thing
-    // in future we can run an isolate on it to make it faster.
-    // I don't have time to do that now.
-    setupRemoteConfig();
-  });
+  );
+  // await setupRemoteConfig();
   runApp(
     MultiBlocProvider(providers: [
       BlocProvider(create: (context) => AuthBloc()),
+      BlocProvider(create: (context) => CommentBloc()),
     ], child: const MyApp()),
   );
 }
 
-/// [setupRemoteConfig] is used to setup the remote config for the app and get the values from the remote config
-void setupRemoteConfig() async {
-  final config = FirebaseRemoteConfig.instance;
-
-  await config.setDefaults({'showFullEmail': false});
-
-  await config.fetchAndActivate();
-}
+// /// [setupRemoteConfig] is used to setup the remote config for the app and get the values from the remote config
+// Future<void> setupRemoteConfig() async {
+//   final config = FirebaseRemoteConfig.instance;
+//
+//   await config.setDefaults({'showFullEmail': false});
+//
+//   await config.fetchAndActivate();
+// }
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
