@@ -9,6 +9,7 @@ class ThemeConfig {
   static const Color secondary = Color(0XFF303F60);
   static const Color onPrimary = Color(0XFFF5F9FD);
   static const Color onSecondary = Color(0XFFCED3DC);
+  static const Color bodySmallText = Colors.black;
 
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
@@ -23,12 +24,45 @@ class ThemeConfig {
         fontFamily: 'Poppins',
       ),
     ),
+    inputDecorationTheme: const InputDecorationTheme(
+      filled: true,
+      fillColor: Colors.white,
+      border: OutlineInputBorder(
+        borderSide: BorderSide.none,
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+      ),
+      hintStyle: TextStyle(
+        fontFamily: 'Poppins',
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        height: 21/14,
+        color: bodySmallText,
+      ),
+    ),
     colorScheme: ColorScheme.fromSeed(
       seedColor: primary,
       primary: primary,
       secondary: secondary,
       onPrimary: onPrimary,
       onSecondary: onSecondary,
+    ),
+
+    // below are the textThemes.
+    textTheme: const TextTheme(
+      bodySmall: TextStyle(
+        fontFamily: 'Poppins',
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        height: 21/14,
+        color: bodySmallText,
+      ),
+      bodyMedium: TextStyle(
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.w400,
+        fontSize: 16,
+        height: 24/16,
+      ),
+      labelMedium: TextStyle(),
     ),
   );
 }
