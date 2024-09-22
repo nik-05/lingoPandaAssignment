@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "622313910026",
+    "project_id": "lingo-panda-comments",
+    "storage_bucket": "lingo-panda-comments.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:622313910026:android:a05ff9e9c336a5f68154f3",
+        "android_client_info": {
+          "package_name": "com.assignment.lingo_panda_assignment"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAksJ8fe1bceqqdAunDYeOLVX9TrnPwafQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

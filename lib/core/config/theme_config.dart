@@ -37,10 +37,16 @@ class ThemeConfig {
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
+      constraints: const BoxConstraints(minHeight: 35, maxHeight: 50),
+      contentPadding: const EdgeInsets.only(bottom: 0, left: 20),
+      errorMaxLines: 2,
       filled: true,
       fillColor: Colors.white,
       border: inputBorder,
+      focusedBorder: inputBorder,
       enabledBorder: inputBorder,
+      errorBorder: inputBorder,
+      disabledBorder: inputBorder,
       hintStyle: bodySmall,
     ),
     colorScheme: ColorScheme.fromSeed(
@@ -60,13 +66,11 @@ class ThemeConfig {
     ),
   );
 
-
   // Border Themes...
-  static OutlineInputBorder inputBorder =  const OutlineInputBorder(
-  borderSide: BorderSide.none,
-  borderRadius: BorderRadius.all(Radius.circular(10)),
+  static OutlineInputBorder inputBorder = const OutlineInputBorder(
+    borderSide: BorderSide.none,
+    borderRadius: BorderRadius.all(Radius.circular(10)),
   );
-
 
   // Text Themes
   static TextStyle bodySmall = const TextStyle(

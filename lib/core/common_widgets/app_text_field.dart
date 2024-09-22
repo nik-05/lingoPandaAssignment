@@ -5,6 +5,7 @@ class AppTextField extends StatefulWidget {
   final bool isObscureText;
   final TextInputType keyboardType;
   final String? hintText;
+  final String? Function(String?)? validator;
 
   const AppTextField({
     super.key,
@@ -12,6 +13,7 @@ class AppTextField extends StatefulWidget {
     this.isObscureText = false,
     this.keyboardType = TextInputType.text,
     this.hintText,
+    this.validator,
   });
 
   @override
@@ -45,17 +47,15 @@ class _AppTextFieldState extends State<AppTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 35,
-      child: TextField(
-        controller: widget.controller,
-        keyboardType: widget.keyboardType,
-        obscureText: obscureText,
-        style: Theme.of(context).textTheme.bodySmall,
-        decoration: InputDecoration(
-          hintText: widget.hintText,
-          suffixIcon: passwordIcon,
-        ),
+    return TextFormField(
+      validator: widget.validator,
+      controller: widget.controller,
+      keyboardType: widget.keyboardType,
+      obscureText: obscureText,
+      style: Theme.of(context).textTheme.bodySmall,
+      decoration: InputDecoration(
+        hintText: widget.hintText,
+        suffixIcon: passwordIcon,
       ),
     );
   }
