@@ -5,30 +5,27 @@ import 'package:lingo_panda_assignment/core/common_widgets/app_text_field.dart';
 import 'package:lingo_panda_assignment/core/utils/custom_alerts.dart';
 import 'package:lingo_panda_assignment/core/utils/form_validator.dart';
 import 'package:lingo_panda_assignment/features/auth/bloc/auth_bloc.dart';
-import 'package:lingo_panda_assignment/features/auth/screens/login_screen.dart';
 import 'package:lingo_panda_assignment/features/auth/widgets/auth_redirect_text.dart';
 import 'package:lingo_panda_assignment/features/comments/screens/comment_screen.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  static route() => MaterialPageRoute(builder: (context) => const LoginScreen());
+  const LoginScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
-  final TextEditingController nameController = TextEditingController();
+class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  // Global Key for form and to validate it.
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
-  // Signup Function
-  void signup() {
+  void login() {
     if (formKey.currentState!.validate()) {
-      BlocProvider.of<AuthBloc>(context).add(AuthSignup(
-          name: nameController.text.trim(),
+      print('login button Clicked');
+      BlocProvider.of<AuthBloc>(context).add(AuthLogin(
           email: emailController.text.trim(),
           password: passwordController.text));
     }
@@ -41,11 +38,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         if (state is AuthErrorState) {
           CustomAlerts.showSnackBar(context, state.message);
         } else if (state is AuthUserLogin) {
-          Future.delayed(const Duration(seconds: 2)).then((val) {
-            if(context.mounted) {
-              Navigator.pushAndRemoveUntil(context, CommentScreen.route(), (route) => false);
-            }
-          });
+          Navigator.pushAndRemoveUntil(context, CommentScreen.route(), (route) => false);
         }
       },
       builder: (context, state) {
@@ -70,12 +63,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         AppTextField(
-                          controller: nameController,
-                          hintText: 'Name',
-                          validator: FormValidator.nameValidator,
-                        ),
-                        const SizedBox(height: 19),
-                        AppTextField(
                           controller: emailController,
                           hintText: 'Email',
                           validator: FormValidator.emailValidator,
@@ -94,17 +81,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         AppButton(
-                          onPressed: signup,
+                          onPressed: login,
                           isLoading: state is AuthLoading,
-                          text: 'Signup',
+                          text: 'Login',
                         ),
                         const SizedBox(height: 14),
                         AuthRedirectText(
                           onTap: () {
-                            Navigator.push(context, LoginScreen.route());
+                            // Since can create a loop so I am popping out the login screen
+                            Navigator.pop(context);
                           },
-                          text1: 'Already have an account? ',
-                          text2: 'Login',
+                          text1: 'New here? ',
+                          text2: 'Signup',
                         ),
                       ],
                     ),

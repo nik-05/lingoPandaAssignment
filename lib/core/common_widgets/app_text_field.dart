@@ -47,15 +47,17 @@ class _AppTextFieldState extends State<AppTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      validator: widget.validator,
-      controller: widget.controller,
-      keyboardType: widget.keyboardType,
-      obscureText: obscureText,
-      style: Theme.of(context).textTheme.bodySmall,
-      decoration: InputDecoration(
-        hintText: widget.hintText,
-        suffixIcon: passwordIcon,
+    return SizedBox(
+      child: TextFormField(
+        validator: widget.validator,
+        controller: widget.controller,
+        keyboardType: widget.keyboardType,
+        obscureText: obscureText,
+        style: Theme.of(context).textTheme.bodySmall,
+        decoration: InputDecoration(
+          hintText: widget.hintText,
+          suffixIcon: passwordIcon,
+        ),
       ),
     );
   }
